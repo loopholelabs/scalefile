@@ -13,5 +13,5 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Initial release of the Scalefile library.
 
-[unreleased]: https://github.com/loopholelabs/scale-scalefile/compare/v0.0.1...HEAD
-[v0.1.0]: https://github.com/loopholelabs/scale-scalefile/compare/v0.0.1
+[unreleased]: https://github.com/loopholelabs/scalefile/compare/v0.0.1...HEAD
+[v0.1.0]: https://github.com/loopholelabs/scalefile/compare/v0.0.1

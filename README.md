@@ -1,7 +1,7 @@
 # Scalefile
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-brightgreen.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Tests](https://github.com/loopholelabs/scale-scalefile/actions/workflows/test.yml/badge.svg)](https://github.com/loopholelabs/scale-scalefile/actions/workflows/test.yml)
+[![Tests](https://github.com/loopholelabs/scalefile/actions/workflows/test.yml/badge.svg)](https://github.com/loopholelabs/scalefile/actions/workflows/test.yml)
 
 This library contains the definitions and library for the Scalefile Definition for [Scale Functions](https://scale.sh).
 
@@ -16,9 +16,9 @@ same is true for selected other new features explicitly marked as
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at [https://github.com/loopholelabs/scale-scalefile][gitrepo]. For more
+Bug reports and pull requests are welcome on GitHub at [https://github.com/loopholelabs/scalefile][gitrepo]. For more
 contribution information check
-out [the contribution guide](https://github.com/loopholelabs/scale-scalefile/blob/master/CONTRIBUTING.md).
+out [the contribution guide](https://github.com/loopholelabs/scalefile/blob/master/CONTRIBUTING.md).
 
 ## License
 
@@ -33,6 +33,6 @@ Everyone interacting in the Scalefile project’s codebases, issue trackers, cha
 
 [![https://loopholelabs.io][loopholelabs]](https://loopholelabs.io)
 
-[gitrepo]: https://github.com/loopholelabs/scale-scalefile
+[gitrepo]: https://github.com/loopholelabs/scalefile
 [loopholelabs]: https://cdn.loopholelabs.io/loopholelabs/LoopholeLabsLogo.svg
 [loophomepage]: https://loopholelabs.io

@@ -45,6 +45,9 @@ type Language string
 const (
 	// Go is the Golang Source Language for Scale Functions
 	Go Language = "go"
+
+	// Rust is the Rust Source Language for Scale Functions
+	Rust Language = "rust"
 )
 
 var (
@@ -52,7 +55,7 @@ var (
 	AcceptedVersions = []Version{V1Alpha}
 
 	// AcceptedLanguages is an array of acceptable Languages
-	AcceptedLanguages = []Language{Go}
+	AcceptedLanguages = []Language{Go, Rust}
 )
 
 // Extension outlines the Extension dependency of a Scale Function

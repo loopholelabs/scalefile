@@ -7,11 +7,11 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-## [v0.0.1] - 2022-11-25
+## [v0.1.0] - 2022-11-25
 
 ### Features
 
 - Initial release of the Scalefile library.
 
-[unreleased]: https://github.com/loopholelabs/scalefile/compare/v0.0.1...HEAD
-[v0.0.1]: https://github.com/loopholelabs/scalefile/compare/v0.0.1
+[unreleased]: https://github.com/loopholelabs/scalefile/compare/v0.1.0...HEAD
+[v0.1.0]: https://github.com/loopholelabs/scalefile/compare/v0.1.0

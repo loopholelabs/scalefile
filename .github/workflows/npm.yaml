@@ -22,8 +22,6 @@ jobs:
           key: npm
       - name: Install dependencies with npm
         run: npm install --legacy-peer-deps
-      - name: Run tests with npm
-        run: npm run test
       - name: Build with npm
         run: npm run build
       - name: Publish to npm

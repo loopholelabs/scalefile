@@ -16,7 +16,15 @@
 
 import { TextEncoder, TextDecoder } from "util";
 
-import { ScaleFunc, Go, VersionErr, LanguageErr, ChecksumErr, V1Alpha, Extension } from "./scaleFunc";
+import {
+  ScaleFunc,
+  Go,
+  VersionErr,
+  LanguageErr,
+  ChecksumErr,
+  V1Alpha,
+  Extension,
+} from "./scaleFunc";
 
 window.TextEncoder = TextEncoder;
 window.TextDecoder = TextDecoder as typeof window["TextDecoder"];
@@ -27,21 +35,41 @@ describe("scaleFunc", () => {
   const someFunction = enc.encode("Hello world some function here");
 
   it("Can encode and decode", () => {
-
     expect(() => {
-      const sfInvalid = new ScaleFunc("invalid", "name", "signature", Go, [], Buffer.from(someFunction));
+      const sfInvalid = new ScaleFunc(
+        "invalid",
+        "name",
+        "signature",
+        Go,
+        [],
+        Buffer.from(someFunction)
+      );
       const b = sfInvalid.Encode();
       const sf = ScaleFunc.Decode(b);
     }).toThrow(VersionErr);
 
     expect(() => {
-      const sfInvalid = new ScaleFunc(V1Alpha, "name", "signature", "invalid", [], Buffer.from(someFunction));
+      const sfInvalid = new ScaleFunc(
+        V1Alpha,
+        "name",
+        "signature",
+        "invalid",
+        [],
+        Buffer.from(someFunction)
+      );
       const b = sfInvalid.Encode();
       const sf = ScaleFunc.Decode(b);
     }).toThrow(LanguageErr);
 
     const extensions = [new Extension("Test Extension", "1.0.0")];
-    const sf = new ScaleFunc(V1Alpha, "Test name", "Test Signature", Go, extensions, Buffer.from(someFunction));
+    const sf = new ScaleFunc(
+      V1Alpha,
+      "Test name",
+      "Test Signature",
+      Go,
+      extensions,
+      Buffer.from(someFunction)
+    );
 
     const buff = sf.Encode();
     const sf2 = ScaleFunc.Decode(buff);
@@ -52,9 +80,9 @@ describe("scaleFunc", () => {
     expect(sf.Language).toBe(sf2.Language);
     expect(sf.Extensions).toStrictEqual(sf2.Extensions);
     expect(sf.Function).toStrictEqual(sf2.Function);
-  
-    if (sf2.Size!==undefined && sf2.Checksum!==undefined) {
-      buff[buff.length - 1]++;  // This increments the last byte of the hash
+
+    if (sf2.Size !== undefined && sf2.Checksum !== undefined) {
+      buff[buff.length - 1]++; // This increments the last byte of the hash
       // Now try decode again with a bad checksum...
       expect(() => {
         const sf3 = ScaleFunc.Decode(buff);

@@ -11,6 +11,6 @@
     "paths": {
       "scalefile": ["."]
     },
-    "types": ["node"]
+    "types": ["node", "jest"]
   }
 }

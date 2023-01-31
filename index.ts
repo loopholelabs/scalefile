@@ -15,3 +15,5 @@
 */
 
 export * from "./scalefunc/scaleFunc";
+
+export * from "./scaleFile";

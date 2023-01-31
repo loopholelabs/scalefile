@@ -48,22 +48,12 @@ export const AcceptedVersions: Version[] = [V1Alpha];
 // AcceptedLanguages is an array of acceptable Languages
 export const AcceptedLanguages: Language[] = [Go, Rust];
 
-export class Extension {
-  public Name: string;
-  public Version: string;
-
-  constructor(name: string, version: string) {
-    this.Name = name;
-    this.Version = version;
-  }
-}
-
 export class ScaleFunc {
   public Version: Version;
   public Name: string;
+  public Tag: string;
   public Signature: string;
   public Language: Language;
-  public Extensions: Extension[];
   public Function: Buffer;
   public Size: undefined | number;
   public Checksum: undefined | string;
@@ -71,29 +61,25 @@ export class ScaleFunc {
   constructor(
     version: Version,
     name: string,
+    tag: string,
     signature: string,
     language: string,
-    extensions: Extension[],
     fn: Buffer
   ) {
     this.Version = version;
     this.Name = name;
+    this.Tag = tag;
     this.Signature = signature;
     this.Language = language;
-    this.Extensions = extensions;
     this.Function = fn;
   }
 
   Encode(): Uint8Array {
     let b = encodeString(new Uint8Array(), this.Version as string);
     b = encodeString(b, this.Name);
+    b = encodeString(b, this.Tag);
     b = encodeString(b, this.Signature);
     b = encodeString(b, this.Language as string);
-    b = encodeUint32(b, this.Extensions.length);
-    for (let e of this.Extensions) {
-      b = encodeString(b, e.Name);
-      b = encodeString(b, e.Version);
-    }
     b = encodeUint8Array(b, this.Function);
 
     // Compute the hash (sha256)
@@ -117,24 +103,15 @@ export class ScaleFunc {
     let name: string;
     ({ value: name, buf: b } = decodeString(b));
 
+    let tag: string;
+    ({ value: tag, buf: b } = decodeString(b));
+
     let signature: string;
     ({ value: signature, buf: b } = decodeString(b));
 
     let language: string;
     ({ value: language, buf: b } = decodeString(b));
     if (!AcceptedLanguages.includes(language)) throw LanguageErr;
-
-    let numExtensions: number;
-    ({ value: numExtensions, buf: b } = decodeUint32(b));
-
-    let extensions: Extension[] = [];
-    for (let i = 0; i < numExtensions; i++) {
-      let eName: string;
-      ({ value: eName, buf: b } = decodeString(b));
-      let eVersion: string;
-      ({ value: eVersion, buf: b } = decodeString(b));
-      extensions.push(new Extension(eName, eVersion));
-    }
 
     let fn: Uint8Array;
     ({ value: fn, buf: b } = decodeUint8Array(b));
@@ -143,7 +120,7 @@ export class ScaleFunc {
     ({ value: size, buf: b } = decodeUint32(b));
 
     let hash: string;
-    ({ value: hash, buf: b } = decodeString(b));
+    ({ value: hash } = decodeString(b));
 
     const hashed = sha256(data.slice(0, size));
     let hex = Buffer.from(hashed).toString("hex");
@@ -153,9 +130,9 @@ export class ScaleFunc {
     const sf = new ScaleFunc(
       version,
       name,
+      tag,
       signature,
       language,
-      extensions,
       Buffer.from(fn)
     );
     sf.Size = size;

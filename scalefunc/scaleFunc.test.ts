@@ -23,14 +23,13 @@ import {
   LanguageErr,
   ChecksumErr,
   V1Alpha,
-  Extension,
 } from "./scaleFunc";
 
 window.TextEncoder = TextEncoder;
 window.TextDecoder = TextDecoder as typeof window["TextDecoder"];
 
 describe("scaleFunc", () => {
-  var enc = new TextEncoder(); // always utf-8
+  const enc = new TextEncoder(); // always utf-8
 
   const someFunction = enc.encode("Hello world some function here");
 
@@ -39,35 +38,34 @@ describe("scaleFunc", () => {
       const sfInvalid = new ScaleFunc(
         "invalid",
         "name",
+        "tag",
         "signature",
         Go,
-        [],
         Buffer.from(someFunction)
       );
       const b = sfInvalid.Encode();
-      const sf = ScaleFunc.Decode(b);
+      ScaleFunc.Decode(b);
     }).toThrow(VersionErr);
 
     expect(() => {
       const sfInvalid = new ScaleFunc(
         V1Alpha,
         "name",
+        "tag",
         "signature",
         "invalid",
-        [],
         Buffer.from(someFunction)
       );
       const b = sfInvalid.Encode();
-      const sf = ScaleFunc.Decode(b);
+      ScaleFunc.Decode(b);
     }).toThrow(LanguageErr);
 
-    const extensions = [new Extension("Test Extension", "1.0.0")];
     const sf = new ScaleFunc(
       V1Alpha,
       "Test name",
+      "Test tag",
       "Test Signature",
       Go,
-      extensions,
       Buffer.from(someFunction)
     );
 
@@ -76,16 +74,16 @@ describe("scaleFunc", () => {
 
     expect(sf.Version).toBe(sf2.Version);
     expect(sf.Name).toBe(sf2.Name);
+    expect(sf.Tag).toBe(sf2.Tag);
     expect(sf.Signature).toBe(sf2.Signature);
     expect(sf.Language).toBe(sf2.Language);
-    expect(sf.Extensions).toStrictEqual(sf2.Extensions);
     expect(sf.Function).toStrictEqual(sf2.Function);
 
     if (sf2.Size !== undefined && sf2.Checksum !== undefined) {
       buff[buff.length - 1]++; // This increments the last byte of the hash
-      // Now try decode again with a bad checksum...
+      // Now try to decode again with a bad checksum...
       expect(() => {
-        const sf3 = ScaleFunc.Decode(buff);
+        ScaleFunc.Decode(buff);
       }).toThrow(ChecksumErr);
     } else {
       throw new Error("Size or Checksum were not set!");

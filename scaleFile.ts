@@ -14,9 +14,9 @@
 	limitations under the License.
 */
 
-import { parse, stringify } from 'yaml'
-
 import fs from "fs";
+
+import { load, dump } from "js-yaml";
 
 import { VersionErr, LanguageErr, Version, V1Alpha,
   Language, Go, Rust, TypeScript,
@@ -58,10 +58,24 @@ export class ScaleFile {
 
   public static Decode(data: string): ScaleFile {
     // Load the yaml file
-    const doc = parse(data);
+    const doc: any = load(data);
 
     var sf = new ScaleFile();
-    // TODO: Convert it into a scaleFile, and verify things...
+    sf.Version = doc.version as Version;
+    sf.Name = doc.name;
+    sf.Signature = doc.signature;
+    sf.Language = doc.language as Language;
+    sf.Source = doc.source;
+
+    sf.Extensions = [];
+    for(let e of doc.extensions) {
+      sf.Extensions.push(new Extension(e.name, e.version));
+    }
+
+    sf.Dependencies = [];
+    for(let d of doc.dependencies) {
+      sf.Dependencies.push(new Dependency(d.name, d.version));
+    }
 
     if (!AcceptedVersions.includes(sf.Version)) throw VersionErr;
 
@@ -75,9 +89,27 @@ export class ScaleFile {
 
     if (!AcceptedLanguages.includes(this.Language)) throw LanguageErr;
 
-    // TODO: Options
-    var data = stringify(this);
+    var exts = [];
+    for(let e of this.Extensions) {
+      exts.push({name: e.Name, version: e.Version});
+    }
 
-    return data;
+    var deps = [];
+    for(let e of this.Dependencies) {
+      deps.push({name: e.Name, version: e.Version});
+    }
+
+    // Decide what to serialize here...
+    var y = {
+      version: this.Version,
+      language: this.Language,
+      name: this.Name,
+      signature: this.Signature,
+      source: this.Source,
+      extensions: exts,
+      dependencies: deps
+    }
+
+    return dump(y);
   }
 }

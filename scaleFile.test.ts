@@ -29,8 +29,15 @@ describe("scaleFile", () => {
     // Encode it...
     let data = sf.Encode();
 
-    console.log("Encoded data", data);
+    let sf2 = ScaleFile.Decode(data);
 
+    expect(sf2.Name).toBe(sf.Name);
+    expect(sf2.Signature).toBe(sf.Signature);
+    expect(sf2.Version).toBe(sf.Version);
+    expect(sf2.Language).toBe(sf.Language);
+
+    expect(sf2.Extensions).toStrictEqual(sf.Extensions);
+    expect(sf2.Dependencies).toStrictEqual(sf.Dependencies);
     
   });
 });

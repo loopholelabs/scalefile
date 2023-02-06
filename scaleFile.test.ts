@@ -14,7 +14,7 @@
         limitations under the License.
 */
 
-import { ScaleFile, Extension, Dependency } from "./scaleFile";
+import { ScaleFile, Dependency } from "./scaleFile";
 
 describe("scaleFile", () => {
   it("Can encode and decode", () => {
@@ -22,7 +22,6 @@ describe("scaleFile", () => {
     let sf = new ScaleFile();
     sf.Signature = "test.signature";
     sf.Name = "test.name";
-    sf.Extensions.push(new Extension("test.ext.name", "test.ext.version"));
     sf.Dependencies.push(new Dependency("test.dep.name", "test.dep.version"));
 
     // Encode it...
@@ -35,7 +34,6 @@ describe("scaleFile", () => {
     expect(sf2.Version).toBe(sf.Version);
     expect(sf2.Language).toBe(sf.Language);
 
-    expect(sf2.Extensions).toStrictEqual(sf.Extensions);
     expect(sf2.Dependencies).toStrictEqual(sf.Dependencies);
     
   });

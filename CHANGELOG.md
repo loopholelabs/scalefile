@@ -7,11 +7,19 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [v0.1.5] - 2023-02-06
+
+### Features
+
+- Adding support for a TypeScript Host
+- Adding functions to the scalefunc library to read and write scale functions to files
+
 ## [v0.1.0] - 2022-11-25
 
 ### Features
 
 - Initial release of the Scalefile library.
 
-[unreleased]: https://github.com/loopholelabs/scalefile/compare/v0.1.0...HEAD
+[unreleased]: https://github.com/loopholelabs/scalefile/compare/v0.1.5...HEAD
+[v0.1.5]: https://github.com/loopholelabs/scalefile/compare/v0.1.5
 [v0.1.0]: https://github.com/loopholelabs/scalefile/compare/v0.1.0

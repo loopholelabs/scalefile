@@ -23,19 +23,6 @@ import { VersionErr, LanguageErr, Version, V1Alpha,
   AcceptedVersions, AcceptedLanguages
  } from "./scalefunc/scaleFunc";
 
-// Package scalefile implements the ScaleFile type, as well as any helper functions
-// for interacting with ScaleFile types
-
-export class Extension {
-  public Name: string;
-  public Version: string;
-  
-  constructor(name: string, version: string) {
-    this.Name = name;
-    this.Version = version;
-  }
-}
-  
 export class Dependency {
   public Name: string;
   public Version: string;
@@ -45,7 +32,6 @@ export class Dependency {
     this.Version = version;
   }
 }
-  
 
 export class ScaleFile {
   public Version: Version           // json/yaml: version
@@ -53,7 +39,6 @@ export class ScaleFile {
   public Signature: string          // json/yaml: signature
   public Language: Language         // json/yaml: language
   public Dependencies: Dependency[] // json/yaml: dependencies
-  public Extensions: Extension[]    // json/yaml: extensions
   public Source: string             // json/yaml: source
 
   public constructor() {
@@ -62,7 +47,6 @@ export class ScaleFile {
     this.Signature = "";
     this.Language = Go;
     this.Dependencies = [];
-    this.Extensions = [];
     this.Source = "";
   }
 
@@ -80,17 +64,12 @@ export class ScaleFile {
     // Load the yaml file
     const doc: any = load(data);
 
-    var sf = new ScaleFile();
+    let sf = new ScaleFile();
     sf.Version = doc.version as Version;
     sf.Name = doc.name;
     sf.Signature = doc.signature;
     sf.Language = doc.language as Language;
     sf.Source = doc.source;
-
-    sf.Extensions = [];
-    for(let e of doc.extensions) {
-      sf.Extensions.push(new Extension(e.name, e.version));
-    }
 
     sf.Dependencies = [];
     for(let d of doc.dependencies) {
@@ -109,27 +88,18 @@ export class ScaleFile {
 
     if (!AcceptedLanguages.includes(this.Language)) throw LanguageErr;
 
-    var exts = [];
-    for(let e of this.Extensions) {
-      exts.push({name: e.Name, version: e.Version});
-    }
-
-    var deps = [];
+    let deps = [];
     for(let e of this.Dependencies) {
       deps.push({name: e.Name, version: e.Version});
     }
 
-    // Decide what to serialize here...
-    var y = {
+    return dump({
       version: this.Version,
       language: this.Language,
       name: this.Name,
       signature: this.Signature,
       source: this.Source,
-      extensions: exts,
       dependencies: deps
-    }
-
-    return dump(y);
+    });
   }
 }

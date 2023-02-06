@@ -23,6 +23,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"github.com/loopholelabs/polyglot-go"
+	"os"
 )
 
 var (
@@ -69,6 +70,22 @@ type ScaleFunc struct {
 	Function  []byte   `json:"function" yaml:"function"`
 	Size      uint32   `json:"size" yaml:"size"`
 	Checksum  string   `json:"checksum" yaml:"checksum"`
+}
+
+// Read opens a file at the given path and returns a *ScaleFile
+func Read(path string) (*ScaleFunc, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	scaleFunc := new(ScaleFunc)
+	return scaleFunc, scaleFunc.Decode(data)
+}
+
+// Write opens a file at the given path and writes the given scalefile to it
+func Write(path string, scaleFunc *ScaleFunc) error {
+	data := scaleFunc.Encode()
+	return os.WriteFile(path, data, 0644)
 }
 
 func (s *ScaleFunc) Encode() []byte {

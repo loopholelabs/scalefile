@@ -24,6 +24,7 @@ import {
   encodeUint8Array,
   decodeUint8Array,
 } from "@loopholelabs/polyglot-ts";
+import fs from "fs";
 
 export const VersionErr = new Error("unknown or invalid version");
 export const LanguageErr = new Error("unknown or invalid language");
@@ -138,5 +139,15 @@ export class ScaleFunc {
     sf.Size = size;
     sf.Checksum = hash;
     return sf;
+  }
+
+  public static Read(path: string): ScaleFunc {
+    let data = fs.readFileSync(path, null);
+    return ScaleFunc.Decode(data);
+  }
+
+  public static Write(path: string, scaleFunc: ScaleFunc) {
+    let data = scaleFunc.Encode()
+    fs.writeFileSync(path, data);
   }
 }

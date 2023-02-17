@@ -7,6 +7,14 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [v0.1.7] - 2023-02-17
+
+### Changes
+
+- Fixing CI/CD Pipeline to properly test `Typescript` code
+- Updating the `ValidName` function to allow `-` and `.` characters in the name, but not `_`. 
+- `ValidName` is now called `ValidString` and is used to validate the name, tag, and organization of a scale function.
+
 ## [v0.1.6] - 2023-02-16
 
 ### Features
@@ -28,7 +36,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Initial release of the Scalefile library.
 
-[unreleased]: https://github.com/loopholelabs/scalefile/compare/v0.1.6...HEAD
+[unreleased]: https://github.com/loopholelabs/scalefile/compare/v0.1.7...HEAD
+[v0.1.7]: https://github.com/loopholelabs/scalefile/compare/v0.1.7
 [v0.1.6]: https://github.com/loopholelabs/scalefile/compare/v0.1.6
 [v0.1.5]: https://github.com/loopholelabs/scalefile/compare/v0.1.5
 [v0.1.0]: https://github.com/loopholelabs/scalefile/compare/v0.1.0

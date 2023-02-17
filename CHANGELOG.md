@@ -7,6 +7,11 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Features
+
+- Updating `README.md` with a Discord badge
+- Streamlining `package.json` to only include the necessary dependencies
+
 ## [v0.1.5] - 2023-02-06
 
 ### Features

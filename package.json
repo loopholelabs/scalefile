@@ -1,6 +1,6 @@
 {
   "name": "@loopholelabs/scalefile",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "The definitions and library for working with Scalefiles",
   "license": "apache-2.0",
   "source": "index.ts",

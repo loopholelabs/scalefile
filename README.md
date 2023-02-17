@@ -4,7 +4,6 @@
 [![Discord](https://dcbadge.vercel.app/api/server/JYmFhtdPeu?style=flat)](https://loopholelabs.io/discord)
 
 [![Golang](https://github.com/loopholelabs/scalefile/actions/workflows/golang-tests.yml/badge.svg)](https://github.com/loopholelabs/scale-signature-http/actions/workflows/golang-tests.yml)
-[![Rust](https://github.com/loopholelabs/scalefile/actions/workflows/rust-tests.yml/badge.svg)](https://github.com/loopholelabs/scale-signature-http/actions/workflows/rust-tests.yml)
 [![Typescript](https://github.com/loopholelabs/scalefile/actions/workflows/typescript-tests.yml/badge.svg)](https://github.com/loopholelabs/scale-signature-http/actions/workflows/typescript-tests.yml)
 
 This library contains the definitions and library for working with `Scalefiles` used by [Scale Functions](https://scale.sh).

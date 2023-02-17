@@ -24,12 +24,17 @@ import (
 	"errors"
 	"github.com/loopholelabs/polyglot-go"
 	"os"
+	"regexp"
 )
 
 var (
 	VersionErr  = errors.New("unknown or invalid version")
 	LanguageErr = errors.New("unknown or invalid language")
 	ChecksumErr = errors.New("error while verifying checksum")
+)
+
+var (
+	InvalidNameRegex = regexp.MustCompile(`[^A-Za-z0-9_]`)
 )
 
 // Version is the Version of the ScaleFunc definition
@@ -70,6 +75,10 @@ type ScaleFunc struct {
 	Function  []byte   `json:"function" yaml:"function"`
 	Size      uint32   `json:"size" yaml:"size"`
 	Checksum  string   `json:"checksum" yaml:"checksum"`
+}
+
+func ValidName(name string) bool {
+	return !InvalidNameRegex.MatchString(name)
 }
 
 // Read opens a file at the given path and returns a *ScaleFile

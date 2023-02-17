@@ -1,18 +1,13 @@
 # Scalefile
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-brightgreen.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Tests](https://github.com/loopholelabs/scalefile/actions/workflows/test.yml/badge.svg)](https://github.com/loopholelabs/scalefile/actions/workflows/test.yml)
+[![Discord](https://dcbadge.vercel.app/api/server/JYmFhtdPeu?style=flat)](https://loopholelabs.io/discord)
 
-This library contains the definitions and library for the Scalefile Definition for [Scale Functions](https://scale.sh).
+[![Golang](https://github.com/loopholelabs/scalefile/actions/workflows/golang-tests.yml/badge.svg)](https://github.com/loopholelabs/scale-signature-http/actions/workflows/golang-tests.yml)
+[![Rust](https://github.com/loopholelabs/scalefile/actions/workflows/rust-tests.yml/badge.svg)](https://github.com/loopholelabs/scale-signature-http/actions/workflows/rust-tests.yml)
+[![Typescript](https://github.com/loopholelabs/scalefile/actions/workflows/typescript-tests.yml/badge.svg)](https://github.com/loopholelabs/scale-signature-http/actions/workflows/typescript-tests.yml)
 
-**This library requires Go1.18 or later.**
-
-## Important note about releases and stability
-
-This repository generally follows [Semantic Versioning](https://semver.org/). However, **this library is currently in
-Beta** and is still considered experimental. Breaking changes of the library will _not_ trigger a new major release. The
-same is true for selected other new features explicitly marked as
-**EXPERIMENTAL** in [the changelog](/CHANGELOG.md).
+This library contains the definitions and library for working with `Scalefiles` used by [Scale Functions](https://scale.sh).
 
 ## Contributing
 

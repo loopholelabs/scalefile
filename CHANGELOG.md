@@ -7,6 +7,14 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [v0.1.6] - 2023-02-16
+
+### Features
+
+- Updating `README.md` with a Discord badge
+- Streamlining `package.json` to only include the necessary dependencies
+- Adding `ValidName` functions to the `Go` and `Typescript` implementations of the `scalefunc` library
+
 ## [v0.1.5] - 2023-02-06
 
 ### Features
@@ -20,6 +28,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Initial release of the Scalefile library.
 
-[unreleased]: https://github.com/loopholelabs/scalefile/compare/v0.1.5...HEAD
+[unreleased]: https://github.com/loopholelabs/scalefile/compare/v0.1.6...HEAD
+[v0.1.6]: https://github.com/loopholelabs/scalefile/compare/v0.1.6
 [v0.1.5]: https://github.com/loopholelabs/scalefile/compare/v0.1.5
 [v0.1.0]: https://github.com/loopholelabs/scalefile/compare/v0.1.0

@@ -62,3 +62,27 @@ func TestEncodeDecode(t *testing.T) {
 	err = decoded.Decode(encoded)
 	assert.ErrorIs(t, err, ChecksumErr)
 }
+
+func TestValidName(t *testing.T) {
+	assert.True(t, ValidName("test"))
+	assert.True(t, ValidName("test1"))
+	assert.True(t, ValidName("test_1"))
+	assert.True(t, ValidName("te____1"))
+	assert.False(t, ValidName("test-1"))
+	assert.False(t, ValidName("test.1"))
+	assert.False(t, ValidName("test 1"))
+	assert.False(t, ValidName("test1 "))
+	assert.False(t, ValidName(" test1"))
+	assert.False(t, ValidName("test1."))
+	assert.False(t, ValidName("test1?"))
+	assert.False(t, ValidName("test1!"))
+	assert.False(t, ValidName("test1@"))
+	assert.False(t, ValidName("test1#"))
+	assert.False(t, ValidName("test1$"))
+	assert.False(t, ValidName("test1%"))
+	assert.False(t, ValidName("test1^"))
+	assert.False(t, ValidName("test1&"))
+	assert.False(t, ValidName("test1*"))
+	assert.False(t, ValidName("test1("))
+	assert.False(t, ValidName("test1_1!"))
+}

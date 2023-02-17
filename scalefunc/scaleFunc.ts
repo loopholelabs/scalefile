@@ -26,6 +26,8 @@ import {
 } from "@loopholelabs/polyglot-ts";
 import fs from "fs";
 
+const InvalidNameRegex = /[^A-Za-z0-9_]/;
+
 export const VersionErr = new Error("unknown or invalid version");
 export const LanguageErr = new Error("unknown or invalid language");
 export const ChecksumErr = new Error("error while verifying checksum");
@@ -139,6 +141,10 @@ export class ScaleFunc {
     sf.Size = size;
     sf.Checksum = hash;
     return sf;
+  }
+
+  static ValidName(name: string): boolean {
+    return !InvalidNameRegex.test(name);
   }
 
   public static Read(path: string): ScaleFunc {

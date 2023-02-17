@@ -24,6 +24,7 @@ import {
   ChecksumErr,
   V1Alpha,
 } from "./scaleFunc";
+import exp from "constants";
 
 window.TextEncoder = TextEncoder;
 window.TextDecoder = TextDecoder as typeof window["TextDecoder"];
@@ -88,5 +89,35 @@ describe("scaleFunc", () => {
     } else {
       throw new Error("Size or Checksum were not set!");
     }
+  });
+});
+
+
+describe("ValidName", () => {
+  it("Valid Name", () => {
+    expect(ScaleFunc.ValidName("test")).toBe(true);
+    expect(ScaleFunc.ValidName("test1")).toBe(true);
+    expect(ScaleFunc.ValidName("test_1")).toBe(true);
+    expect(ScaleFunc.ValidName("te____1")).toBe(true);
+  });
+
+  it("Invalid Name", () => {
+    expect(ScaleFunc.ValidName("test-1")).toBe(false);
+    expect(ScaleFunc.ValidName("test.1")).toBe(false);
+    expect(ScaleFunc.ValidName("test 1")).toBe(false);
+    expect(ScaleFunc.ValidName("test1 ")).toBe(false);
+    expect(ScaleFunc.ValidName(" test1")).toBe(false);
+    expect(ScaleFunc.ValidName("test1.")).toBe(false);
+    expect(ScaleFunc.ValidName("test1?")).toBe(false);
+    expect(ScaleFunc.ValidName("test1!")).toBe(false);
+    expect(ScaleFunc.ValidName("test1@")).toBe(false);
+    expect(ScaleFunc.ValidName("test1#")).toBe(false);
+    expect(ScaleFunc.ValidName("test1$")).toBe(false);
+    expect(ScaleFunc.ValidName("test1%")).toBe(false);
+    expect(ScaleFunc.ValidName("test1^")).toBe(false);
+    expect(ScaleFunc.ValidName("test1&")).toBe(false);
+    expect(ScaleFunc.ValidName("test1*")).toBe(false);
+    expect(ScaleFunc.ValidName("test1(")).toBe(false);
+    expect(ScaleFunc.ValidName("test1_1!")).toBe(false);
   });
 });

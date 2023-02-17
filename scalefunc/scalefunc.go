@@ -34,7 +34,7 @@ var (
 )
 
 var (
-	InvalidNameRegex = regexp.MustCompile(`[^A-Za-z0-9_]`)
+	InvalidStringRegex = regexp.MustCompile(`[^A-Za-z0-9-.]`)
 )
 
 // Version is the Version of the ScaleFunc definition
@@ -77,8 +77,8 @@ type ScaleFunc struct {
 	Checksum  string   `json:"checksum" yaml:"checksum"`
 }
 
-func ValidName(name string) bool {
-	return !InvalidNameRegex.MatchString(name)
+func ValidString(str string) bool {
+	return !InvalidStringRegex.MatchString(str)
 }
 
 // Read opens a file at the given path and returns a *ScaleFile

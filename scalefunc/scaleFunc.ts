@@ -45,11 +45,14 @@ export const Go: Language = "go";
 // Rust is the Rust Source Language for Scale Functions
 export const Rust: Language = "rust";
 
+// TypeScript is the TypeScript Source Language for Scale Functions
+export const TypeScript: Language = "typescript";
+
 // AcceptedVersions is an array of acceptable Versions
 export const AcceptedVersions: Version[] = [V1Alpha];
 
 // AcceptedLanguages is an array of acceptable Languages
-export const AcceptedLanguages: Language[] = [Go, Rust];
+export const AcceptedLanguages: Language[] = [Go, Rust, TypeScript];
 
 export class ScaleFunc {
   public Version: Version;

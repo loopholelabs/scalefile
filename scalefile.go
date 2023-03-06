@@ -20,9 +20,10 @@ package scalefile
 
 import (
 	"errors"
-	"gopkg.in/yaml.v3"
 	"io"
 	"os"
+
+	"gopkg.in/yaml.v3"
 )
 
 var (
@@ -46,6 +47,8 @@ const (
 	Go Language = "go"
 	// Rust is the Rust Source Language for Scale Functions
 	Rust Language = "rust"
+	// TypeScript is the TypeScript Source Language for Scale Functions
+	TypeScript Language = "typescript"
 )
 
 var (
@@ -53,7 +56,7 @@ var (
 	AcceptedVersions = []Version{V1Alpha}
 
 	// AcceptedLanguages is an array of acceptable Languages
-	AcceptedLanguages = []Language{Go, Rust}
+	AcceptedLanguages = []Language{Go, Rust, TypeScript}
 )
 
 // Dependency outlines the Dependency of a Scale Function

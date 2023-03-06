@@ -22,9 +22,10 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"errors"
-	"github.com/loopholelabs/polyglot-go"
 	"os"
 	"regexp"
+
+	"github.com/loopholelabs/polyglot-go"
 )
 
 var (
@@ -54,6 +55,9 @@ const (
 
 	// Rust is the Rust Source Language for Scale Functions
 	Rust Language = "rust"
+
+	// TypeScript is the TypeScript Language for Scale Functions
+	TypeScript Language = "typescript"
 )
 
 var (
@@ -61,7 +65,7 @@ var (
 	AcceptedVersions = []Version{V1Alpha}
 
 	// AcceptedLanguages is an array of acceptable Languages
-	AcceptedLanguages = []Language{Go, Rust}
+	AcceptedLanguages = []Language{Go, Rust, TypeScript}
 )
 
 // ScaleFunc is the type used to define the requirements of a

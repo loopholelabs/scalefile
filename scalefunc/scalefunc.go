@@ -23,7 +23,6 @@ import (
 	"encoding/hex"
 	"errors"
 	"github.com/loopholelabs/polyglot-go"
-	"os"
 	"regexp"
 )
 
@@ -54,6 +53,12 @@ const (
 
 	// Rust is the Rust Source Language for Scale Functions
 	Rust Language = "rust"
+
+	// TypeScript is the TypeScript Source Language for Scale Functions
+	TypeScript Language = "ts"
+
+	// JavaScript is the JavaScript Source Language for Scale Functions
+	JavaScript Language = "js"
 )
 
 var (
@@ -61,7 +66,7 @@ var (
 	AcceptedVersions = []Version{V1Alpha}
 
 	// AcceptedLanguages is an array of acceptable Languages
-	AcceptedLanguages = []Language{Go, Rust}
+	AcceptedLanguages = []Language{Go, Rust, TypeScript, JavaScript}
 )
 
 // ScaleFunc is the type used to define the requirements of a
@@ -79,22 +84,6 @@ type ScaleFunc struct {
 
 func ValidString(str string) bool {
 	return !InvalidStringRegex.MatchString(str)
-}
-
-// Read opens a file at the given path and returns a *ScaleFile
-func Read(path string) (*ScaleFunc, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	scaleFunc := new(ScaleFunc)
-	return scaleFunc, scaleFunc.Decode(data)
-}
-
-// Write opens a file at the given path and writes the given scalefile to it
-func Write(path string, scaleFunc *ScaleFunc) error {
-	data := scaleFunc.Encode()
-	return os.WriteFile(path, data, 0644)
 }
 
 func (s *ScaleFunc) Encode() []byte {

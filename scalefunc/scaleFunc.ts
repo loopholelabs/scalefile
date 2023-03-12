@@ -24,7 +24,6 @@ import {
   encodeUint8Array,
   decodeUint8Array,
 } from "@loopholelabs/polyglot-ts";
-import fs from "fs";
 
 export const InvalidStringRegex = /[^A-Za-z0-9-.]/;
 
@@ -45,11 +44,17 @@ export const Go: Language = "go";
 // Rust is the Rust Source Language for Scale Functions
 export const Rust: Language = "rust";
 
+// Typescript is the Typescript Source Language for Scale Functions
+export const Typescript: Language = "ts";
+
+// Javascript is the Javascript Source Language for Scale Functions
+export const Javascript: Language = "js";
+
 // AcceptedVersions is an array of acceptable Versions
 export const AcceptedVersions: Version[] = [V1Alpha];
 
 // AcceptedLanguages is an array of acceptable Languages
-export const AcceptedLanguages: Language[] = [Go, Rust];
+export const AcceptedLanguages: Language[] = [Go, Rust, Typescript, Javascript];
 
 export class ScaleFunc {
   public Version: Version;
@@ -142,18 +147,8 @@ export class ScaleFunc {
     sf.Checksum = hash;
     return sf;
   }
+}
 
-  public static ValidString(str: string): boolean {
-    return !InvalidStringRegex.test(str);
-  }
-
-  public static Read(path: string): ScaleFunc {
-    let data = fs.readFileSync(path, null);
-    return ScaleFunc.Decode(data);
-  }
-
-  public static Write(path: string, scaleFunc: ScaleFunc) {
-    let data = scaleFunc.Encode()
-    fs.writeFileSync(path, data);
-  }
+export function ValidString(str: string): boolean {
+  return !InvalidStringRegex.test(str);
 }

@@ -18,10 +18,21 @@ import fs from "fs";
 
 import { load, dump } from "js-yaml";
 
-import { VersionErr, LanguageErr, Version, V1Alpha,
-  Language, Go, Rust,
-  AcceptedVersions, AcceptedLanguages
- } from "./scalefunc/scaleFunc";
+import {
+  VersionErr,
+  LanguageErr,
+  Language,
+  Go,
+  AcceptedLanguages
+ } from "./scalefunc";
+
+export type Version = string;
+
+// V1Alpha is the V1 Alpha definition of a ScaleFunc
+export const V1Alpha: Version = "v1alpha";
+
+// AcceptedVersions is an array of acceptable Versions
+export const AcceptedVersions: Version[] = [V1Alpha];
 
 export class Dependency {
   public Name: string;

@@ -14,4 +14,15 @@
 	limitations under the License.
 */
 
-export * from "./scaleFile";
+import fs from "fs";
+import {ScaleFunc} from "./scaleFunc";
+
+export function Read(path: string): ScaleFunc {
+    let data = fs.readFileSync(path, null);
+    return ScaleFunc.Decode(data);
+}
+
+export function Write(path: string, scaleFunc: ScaleFunc) {
+    let data = scaleFunc.Encode()
+    fs.writeFileSync(path, data);
+}

@@ -14,4 +14,22 @@
 	limitations under the License.
 */
 
-export * from "./scaleFile";
+package scalefunc
+
+import "os"
+
+// Read opens a file at the given path and returns a *ScaleFile
+func Read(path string) (*ScaleFunc, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	scaleFunc := new(ScaleFunc)
+	return scaleFunc, scaleFunc.Decode(data)
+}
+
+// Write opens a file at the given path and writes the given scalefile to it
+func Write(path string, scaleFunc *ScaleFunc) error {
+	data := scaleFunc.Encode()
+	return os.WriteFile(path, data, 0644)
+}

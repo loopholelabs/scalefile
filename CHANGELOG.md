@@ -7,6 +7,14 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [v0.1.8] - 2023-03-11
+
+### Changes
+
+- Moving the `webpack` loader plugin into this repository 
+- Modified the `scalefunc` dependency so that while treeshaking if the `fs` dependency is not required it will not be loaded
+- The Go `scalefile` package has also been modified to reuse the `Language` types and definitions from the `scalefunc` package
+
 ## [v0.1.7] - 2023-02-17
 
 ### Changes
@@ -36,7 +44,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Initial release of the Scalefile library.
 
-[unreleased]: https://github.com/loopholelabs/scalefile/compare/v0.1.7...HEAD
+[unreleased]: https://github.com/loopholelabs/scalefile/compare/v0.1.8...HEAD
+[v0.1.8]: https://github.com/loopholelabs/scalefile/compare/v0.1.8
 [v0.1.7]: https://github.com/loopholelabs/scalefile/compare/v0.1.7
 [v0.1.6]: https://github.com/loopholelabs/scalefile/compare/v0.1.6
 [v0.1.5]: https://github.com/loopholelabs/scalefile/compare/v0.1.5

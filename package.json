@@ -1,23 +1,13 @@
 {
   "name": "@loopholelabs/scalefile",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "The definitions and library for working with Scalefiles",
   "license": "apache-2.0",
   "source": "index.ts",
-  "main": "dist/main.js",
-  "module": "dist/module.js",
-  "types": "dist/types.d.ts",
+  "types": "types.d.ts",
   "scripts": {
-    "build": "parcel build",
+    "build": "rm -rf dist && tsc --outDir dist && cp package.json dist",
     "test": "node --trace-warnings node_modules/.bin/jest --no-cache"
-  },
-  "files": [
-    "dist"
-  ],
-  "targets": {
-    "default": {
-      "distDir": "./dist"
-    }
   },
   "dependencies": {
     "@loopholelabs/polyglot-ts": "^0.4.0",

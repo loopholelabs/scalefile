@@ -20,6 +20,7 @@ package scalefile
 
 import (
 	"errors"
+	"github.com/loopholelabs/scalefile/scalefunc"
 	"gopkg.in/yaml.v3"
 	"io"
 	"os"
@@ -38,22 +39,9 @@ const (
 	V1Alpha Version = "v1alpha"
 )
 
-// Language is the Language the Scale Function's Source Language
-type Language string
-
-const (
-	// Go is the Golang Source Language for Scale Functions
-	Go Language = "go"
-	// Rust is the Rust Source Language for Scale Functions
-	Rust Language = "rust"
-)
-
 var (
 	// AcceptedVersions is an array of acceptable Versions
 	AcceptedVersions = []Version{V1Alpha}
-
-	// AcceptedLanguages is an array of acceptable Languages
-	AcceptedLanguages = []Language{Go, Rust}
 )
 
 // Dependency outlines the Dependency of a Scale Function
@@ -64,13 +52,13 @@ type Dependency struct {
 
 // ScaleFile describes the Scale Function and its dependencies
 type ScaleFile struct {
-	Version      Version      `json:"version" yaml:"version"`
-	Name         string       `json:"name" yaml:"name"`
-	Tag          string       `json:"tag" yaml:"tag"`
-	Signature    string       `json:"signature" yaml:"signature"`
-	Language     Language     `json:"language" yaml:"language"`
-	Dependencies []Dependency `json:"dependencies" yaml:"dependencies"`
-	Source       string       `json:"source" yaml:"source"`
+	Version      Version            `json:"version" yaml:"version"`
+	Name         string             `json:"name" yaml:"name"`
+	Tag          string             `json:"tag" yaml:"tag"`
+	Signature    string             `json:"signature" yaml:"signature"`
+	Language     scalefunc.Language `json:"language" yaml:"language"`
+	Dependencies []Dependency       `json:"dependencies" yaml:"dependencies"`
+	Source       string             `json:"source" yaml:"source"`
 }
 
 // Read opens a file at the given path and returns a *ScaleFile
@@ -120,7 +108,7 @@ func Decode(reader io.Reader) (*ScaleFile, error) {
 	}
 
 	invalid = true
-	for _, l := range AcceptedLanguages {
+	for _, l := range scalefunc.AcceptedLanguages {
 		if scalefile.Language == l {
 			invalid = false
 			break
@@ -147,7 +135,7 @@ func Encode(writer io.Writer, scalefile *ScaleFile) error {
 	}
 
 	invalid = true
-	for _, l := range AcceptedLanguages {
+	for _, l := range scalefunc.AcceptedLanguages {
 		if scalefile.Language == l {
 			invalid = false
 			break

@@ -23,6 +23,7 @@ import {
   LanguageErr,
   ChecksumErr,
   V1Alpha,
+  ValidString,
 } from "./scaleFunc";
 
 window.TextEncoder = TextEncoder;
@@ -94,29 +95,29 @@ describe("scaleFunc", () => {
 
 describe("ValidName", () => {
   it("Valid Name", () => {
-    expect(ScaleFunc.ValidString("test")).toBe(true);
-    expect(ScaleFunc.ValidString("test1")).toBe(true);
-    expect(ScaleFunc.ValidString("test.1")).toBe(true);
-    expect(ScaleFunc.ValidString("te---.-1")).toBe(true);
-    expect(ScaleFunc.ValidString("test-1")).toBe(true);
+    expect(ValidString("test")).toBe(true);
+    expect(ValidString("test1")).toBe(true);
+    expect(ValidString("test.1")).toBe(true);
+    expect(ValidString("te---.-1")).toBe(true);
+    expect(ValidString("test-1")).toBe(true);
   });
 
   it("Invalid Name", () => {
-    expect(ScaleFunc.ValidString("test_1")).toBe(false);
-    expect(ScaleFunc.ValidString("test 1")).toBe(false);
-    expect(ScaleFunc.ValidString("test1 ")).toBe(false);
-    expect(ScaleFunc.ValidString(" test1")).toBe(false);
-    expect(ScaleFunc.ValidString("test1_")).toBe(false);
-    expect(ScaleFunc.ValidString("test1?")).toBe(false);
-    expect(ScaleFunc.ValidString("test1!")).toBe(false);
-    expect(ScaleFunc.ValidString("test1@")).toBe(false);
-    expect(ScaleFunc.ValidString("test1#")).toBe(false);
-    expect(ScaleFunc.ValidString("test1$")).toBe(false);
-    expect(ScaleFunc.ValidString("test1%")).toBe(false);
-    expect(ScaleFunc.ValidString("test1^")).toBe(false);
-    expect(ScaleFunc.ValidString("test1&")).toBe(false);
-    expect(ScaleFunc.ValidString("test1*")).toBe(false);
-    expect(ScaleFunc.ValidString("test1(")).toBe(false);
-    expect(ScaleFunc.ValidString("test1-1!")).toBe(false);
+    expect(ValidString("test_1")).toBe(false);
+    expect(ValidString("test 1")).toBe(false);
+    expect(ValidString("test1 ")).toBe(false);
+    expect(ValidString(" test1")).toBe(false);
+    expect(ValidString("test1_")).toBe(false);
+    expect(ValidString("test1?")).toBe(false);
+    expect(ValidString("test1!")).toBe(false);
+    expect(ValidString("test1@")).toBe(false);
+    expect(ValidString("test1#")).toBe(false);
+    expect(ValidString("test1$")).toBe(false);
+    expect(ValidString("test1%")).toBe(false);
+    expect(ValidString("test1^")).toBe(false);
+    expect(ValidString("test1&")).toBe(false);
+    expect(ValidString("test1*")).toBe(false);
+    expect(ValidString("test1(")).toBe(false);
+    expect(ValidString("test1-1!")).toBe(false);
   });
 });

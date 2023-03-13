@@ -25,6 +25,8 @@ import {
   decodeUint8Array,
 } from "@loopholelabs/polyglot-ts";
 
+const Buffer = require("buffer/").Buffer;
+
 export const InvalidStringRegex = /[^A-Za-z0-9-.]/;
 
 export const VersionErr = new Error("unknown or invalid version");

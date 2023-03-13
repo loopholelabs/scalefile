@@ -23,8 +23,13 @@ import {
   LanguageErr,
   Language,
   Go,
+  Rust,
+  Typescript,
+  Javascript,
   AcceptedLanguages
  } from "./scalefunc";
+
+export { Language, Go, Rust, Typescript, Javascript, AcceptedLanguages };
 
 export type Version = string;
 

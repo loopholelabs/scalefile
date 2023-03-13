@@ -26,6 +26,8 @@ import {
   ValidString,
 } from "./scaleFunc";
 
+const Buffer = require("buffer/").Buffer;
+
 window.TextEncoder = TextEncoder;
 window.TextDecoder = TextDecoder as typeof window["TextDecoder"];
 

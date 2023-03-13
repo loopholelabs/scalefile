@@ -7,6 +7,13 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [v0.1.9] - 2023-03-11
+
+### Fixes
+
+- Fixing the `scalefile` package to properly export the `Language` type definition and available types
+- Fixing the `scalefunc` package to use the `buffer` package properly instead of the default `node.js` `Buffer` package
+
 ## [v0.1.8] - 2023-03-11
 
 ### Changes
@@ -44,7 +51,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Initial release of the Scalefile library.
 
-[unreleased]: https://github.com/loopholelabs/scalefile/compare/v0.1.8...HEAD
+[unreleased]: https://github.com/loopholelabs/scalefile/compare/v0.1.9...HEAD
+[v0.1.9]: https://github.com/loopholelabs/scalefile/compare/v0.1.9
 [v0.1.8]: https://github.com/loopholelabs/scalefile/compare/v0.1.8
 [v0.1.7]: https://github.com/loopholelabs/scalefile/compare/v0.1.7
 [v0.1.6]: https://github.com/loopholelabs/scalefile/compare/v0.1.6
